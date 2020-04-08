@@ -6,23 +6,24 @@ public class AttackerSpawn : MonoBehaviour
 {
 
     [SerializeField] bool spawnAttacker;
-    [SerializeField] GameObject objPrefab;
+    [SerializeField] Attacker attackerSpawn;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        if (spawnAttacker == true)
+        while (spawnAttacker == true)
         {
             float spawnRandomly = Random.Range(1f, 5f);
             yield return new WaitForSeconds(spawnRandomly);
-            SpawnPrefab();
+            SpawnAttacker();
         }
         
     }
 
-    public void SpawnPrefab()
+    public void SpawnAttacker()
     {
-        Instantiate(objPrefab, transform.position, transform.rotation);
+        Attacker newAttacker = Instantiate(attackerSpawn, transform.position, transform.rotation) as Attacker;
+        newAttacker.transform.parent = transform;
     }
 
 
