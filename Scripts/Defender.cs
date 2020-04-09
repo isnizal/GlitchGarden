@@ -7,14 +7,16 @@ public class Defender : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float defenderHealth = 10f;
     [SerializeField] float projectileSpeed;
-    [Header("AttackerSpawn")]
+    [Header("None Serialize")]
     AttackerSpawn attackerSpawner;
-
+    Animator animator;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform gunLoad;
     // Start is called before the first frame update
     void Start()
     {
+        attackerSpawner = FindObjectOfType<AttackerSpawn>();
+        animator = GetComponent<Animator>();
         SetLaneAttacker();
     }
 
@@ -23,11 +25,12 @@ public class Defender : MonoBehaviour
     {
         if (isAttackerInLane())
         {
-            
+            animator.SetBool("isAttacking", true);
             Debug.Log("shoot pew pew");
         }
         else
         {
+            animator.SetBool("isAttacking", false);
             Debug.Log("ready to fire");
         }
     }
@@ -44,7 +47,7 @@ public class Defender : MonoBehaviour
     {
         float attackerHealth = FindObjectOfType<Attacker>().GetHealth(defenderHealth);
         defenderHealth = attackerHealth;
-        Debug.Log("Hello");
+        
         
     }
     private void SetLaneAttacker()
