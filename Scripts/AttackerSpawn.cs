@@ -6,11 +6,12 @@ public class AttackerSpawn : MonoBehaviour
 {
 
     [SerializeField] bool spawnAttacker;
-    [SerializeField] Attacker attackerSpawn;
+    [SerializeField]Attacker attackerSpawn;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        
         while (spawnAttacker == true)
         {
             float spawnRandomly = Random.Range(1f, 5f);
@@ -25,10 +26,5 @@ public class AttackerSpawn : MonoBehaviour
         Attacker newAttacker = Instantiate(attackerSpawn, transform.position, transform.rotation) as Attacker;
         newAttacker.transform.parent = transform;
     }
-
-
-
-
-
 
 }

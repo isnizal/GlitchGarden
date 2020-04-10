@@ -8,10 +8,12 @@ public class Attacker : MonoBehaviour
     [SerializeField] float health = 10;
     [SerializeField] GameObject deadParticleVFX;
     [Range(0f, 4f)] [SerializeField] float currentSpeed = 1f;
+    Animator animator;
+    GameObject currentTarget;
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,12 @@ public class Attacker : MonoBehaviour
         }
 
         return;
+    }
+
+    public void Attack(GameObject target)
+    {
+        animator.SetBool("isAttacking", true);
+        currentTarget = target;
     }
 
 }
